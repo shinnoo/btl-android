@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_button"
+    android:orientation="vertical"
+    android:layout_alignParentTop="true"
+    android:weightSum="1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button android:layout_width="match_parent"
+        android:id="@+id/btnChoose"
+        android:text="Choose"
+        android:layout_height="wrap_content" />
+
+    <Button android:layout_width="match_parent"
+        android:id="@+id/btnUpload"
+        android:text="Upload"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
