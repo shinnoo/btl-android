@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Thêm mới sản phẩm"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/add_name"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:hint="Tên sản phẩm"
+        android:padding="10dp"
+        />
+
+    <EditText
+        android:id="@+id/add_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textSize="18sp"
+        android:hint="Mô tả"/>
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm"/>
+
+    <Button android:layout_width="match_parent"
+        android:id="@+id/addChoose"
+        android:text="Chọn ảnh"
+        android:layout_height="wrap_content" />
+
+    <Button android:layout_width="match_parent"
+        android:id="@+id/addUpload"
+        android:text="Upload"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/imgAdd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
