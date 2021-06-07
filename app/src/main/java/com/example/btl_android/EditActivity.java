@@ -26,7 +26,6 @@ import java.util.UUID;
 
 public class EditActivity extends AppCompatActivity {
     private Button btnChoose, btnUpload;
-    private Database database;
     private EditText editName,editDescription;
     private ImageView imageView;
     private Uri filePath;
@@ -50,7 +49,6 @@ public class EditActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-
         if(filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(this);

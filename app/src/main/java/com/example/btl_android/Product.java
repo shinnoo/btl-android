@@ -1,7 +1,10 @@
 package com.example.btl_android;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Product {
-    private int id;
+    private String id;
     private String name;
     private String description;
     private String imgUrl;
@@ -10,18 +13,18 @@ public class Product {
     }
 
 
-    public Product(int id, String name, String description, String imgUrl) {
+    public Product(String id, String name, String description, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,5 +50,15 @@ public class Product {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                '}';
     }
 }

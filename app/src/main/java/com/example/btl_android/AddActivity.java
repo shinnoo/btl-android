@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -27,7 +33,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class AddActivity extends AppCompatActivity {
-    private Button btnChoose, btnUpload;
+    private Button btnChoose, btnUpload, btnAdd;
     private ImageView imageView;
     private EditText addName,addDescription;
     private Uri filePath;
@@ -39,6 +45,7 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add);
+        btnAdd = findViewById(R.id.add_btn);
         btnChoose = findViewById(R.id.addChoose);
         btnUpload = findViewById(R.id.addUpload);
         imageView = findViewById(R.id.imgAdd);
@@ -46,9 +53,15 @@ public class AddActivity extends AppCompatActivity {
         addDescription = findViewById(R.id.add_description);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+
+
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("choose");
                 chooseImage();
             }
         });
@@ -56,7 +69,18 @@ public class AddActivity extends AppCompatActivity {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("upload");
                 uploadImage();
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Product product = new Product(UUID.randomUUID().toString(), "name1","description1","imgUrl1");
+                myRef.child("products").child(product.getId()).setValue(product);
+                startActivity(new Intent(AddActivity.this,MainActivity.class));
+                finish();
             }
         });
     }
