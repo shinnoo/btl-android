@@ -17,8 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +40,7 @@ public class AddActivity extends AppCompatActivity {
     private EditText addName,addDescription;
     private Uri filePath;
     private final int PICK_IMAGE_REQUEST = 71;
+    private String imgUrl;
     //Firebase
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -77,7 +80,9 @@ public class AddActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Product product = new Product(UUID.randomUUID().toString(), "name1","description1","imgUrl1");
+                String name = addName.getText().toString();
+                String description = addDescription.getText().toString();
+                Product product = new Product(UUID.randomUUID().toString(), name,description,imgUrl);
                 myRef.child("products").child(product.getId()).setValue(product);
                 startActivity(new Intent(AddActivity.this,MainActivity.class));
                 finish();
@@ -99,6 +104,13 @@ public class AddActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
+                            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    Uri uri = task.getResult();
+                                    imgUrl = uri.toString();
+                                }
+                            });
                             Toast.makeText(AddActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     })
