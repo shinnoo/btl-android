@@ -3,7 +3,8 @@
 <LinearLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_view">
     <ImageView
         android:id="@+id/img_item"
         android:layout_width="100dp"

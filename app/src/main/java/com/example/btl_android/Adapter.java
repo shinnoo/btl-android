@@ -1,6 +1,7 @@
 package com.example.btl_android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         holder.txtName.setText(product.getName());
         holder.txtDescription.setText(product.getDescription());
         Glide.with(context).load(product.getImgUrl()).into(holder.imageView);
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(context,EditActivity.class);
+                intent.putExtra("product",product);
+                context.startActivity(intent);
+                return true;
+            }
+        });
     }
 
     @Override
